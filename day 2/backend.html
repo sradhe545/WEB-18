@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #out{
+        display: flex;
+        justify-content: space-around;
+        background-color: teal;
+        font-size: 42px;
+    }
+    a{
+        color: white;
+        text-decoration: none;
+    }
+</style>
+<body>
+    <div id="out">
+        <div><a href="frontend.html">Frontend</a></div>
+        <div><a href="backend.html">Backend</a></div>
+    </div>
+    <form>
+        <input id="nam" type="text" placeholder="Enter Name">
+        <input id="im" type="text" placeholder="Enter imgURL">
+        <input id="log" type="text" placeholder="Enter companyLogo">
+        <input id="role" type="text" placeholder="role">
+        <input type="submit">
+    </form>
+</body>
+</html>
+<script>
+document.querySelector("form").addEventListener("submit",myFun)
+
+var array=JSON.parse(localStorage.getItem("myData")) || [];
+function myFun()
+{
+    event.preventDefault()
+   
+    var objData={
+                   name:document.querySelector("#nam").value,
+                   imgurl:document.querySelector("#im").value,
+                   logo:document.querySelector("#log").value,
+                   role:document.querySelector("#role").value
+    }
+    array.push(objData)
+    localStorage.setItem("myData",JSON.stringify(array))
+}
+</script>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #out{
+        display: flex;
+        justify-content: space-around;
+        background-color: teal;
+        font-size: 42px;
+    }
+    a{
+        color: white;
+        text-decoration: none;
+    }
+    #container{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        grid-template-rows: auto;
+        gap: 30px;
+        margin-top: 20px;
+    }
+    #container>div{
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        border-radius: 20px;
+        height: auto;
+       text-align: center;
+    }
+    #container>div>:nth-child(1)
+    {
+        width: 100%;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+    p+img{
+        margin-top: -20px;
+        height: 40px;
+        width: 60%;
+    }
+   
+   
+
+</style>
+<body>
+    <div id="out">
+        <div><a href="frontend.html">Frontend</a></div>
+        <div><a href="backend.html">Backend</a></div>
+    </div>
+    <div id="container">
+
+    </div>
+</body>
+</html>
+<script>
+    var inv=JSON.parse(localStorage.getItem("myData"))
+console.log(inv)
+    inv.forEach(function (element){
+        var cont=document.querySelector("#container")
+        var m=document.createElement("div")
+
+        var iimg=document.createElement("img")
+        iimg.setAttribute("src",element.imgurl)
+
+        var iname=document.createElement("h3")
+        iname.innerText=element.name
+
+        var irole=document.createElement("p")
+        irole.innerText=element.role
+
+        var ilogo=document.createElement("img")
+        ilogo.setAttribute("src",element.logo)
+ 
+        m.append(iimg,iname,irole,ilogo)
+        cont.append(m)
+
+        
+    })
+</script>
