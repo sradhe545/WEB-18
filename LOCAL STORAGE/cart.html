@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart</title>
+    <link rel="stylesheet" href="common.css" />
+</head>
+<body>
+    <div id="navbar">
+        <div><a href="mens.html">Mens</a></div>
+        <div><a href="womens.html">Womens</a></div>
+        <div><a href="login.html">Login</a></div>
+        <div><a href="signup.html">Signup</a></div>
+      </div>
+     <div id="container"></div>
+</body>
+</html>
+<script>
+    var m=JSON.parse(localStorage.getItem("mycart"))
+console.log(m)
+
+display(m)
+function display(m)
+{
+
+
+        m.forEach(function(elem,index){
+            var img=document.createElement("img")
+      img.setAttribute("src",elem.image_url)
+
+      var name=document.createElement("p")
+      name.innerText=elem.name
+
+      var price=document.createElement("p")
+      price.innerText=elem.price
+
+      var strikedoffprice=document.createElement("p")
+      strikedoffprice.innerText=elem.strikedoffprice
+      strikedoffprice.style.textDecoration="line-through"
+
+      var del=document.createElement("button")
+      del.innerText="Delete"
+      
+      var div=document.createElement("div")
+      div.append(img,name,price,strikedoffprice,del)
+      div.addEventListener("click",function(){
+       m.splice(index,1)
+       localStorage.setItem("mycart",JSON.stringify(m))
+       window.location.reload()
+      })
+
+    
+      var cont=document.querySelector("#container")
+      container.append(div)
+
+        })
+    }
+</script>
